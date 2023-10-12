@@ -1,14 +1,18 @@
 from tkinter import*
+from PyDictionary import PyDictionary
 from tkinter import messagebox
+
+dict=PyDictionary()
 def search():
-	input=input_n1.get()
-	dict={"belief": "trust , faith", "god": "the ultimate reality", "smile": "muskan"}
-	if input in dict:
-		output.insert(END,dict[input])
-		#output.config(state= "disabled")
-	else:
-		messagebox.showerror("showerror", "Word not found ")
-		#output.insert(END,"invalid text")
+		input=input_n1.get()
+		mean=dict.meaning(input)
+		if mean:
+			output.delete(1.0, END)
+			output.insert(END, mean['Noun'][0])
+			#output.config(state= "disabled")
+		else:
+			messagebox.showerror("showerror", "Word not found ")
+			#output.insert(END,"invalid text")
 def clear():
 	input_n1.delete(0, END)
 	output.delete("1.0","end")
@@ -40,7 +44,7 @@ button2 = Button( root, text = "Clear",bd = '8',command=clear)
 button3 = Button( root, text = "Exit",bd = '8',command=exit)
 button1_canvas = canvas1.create_window( 200, 400, anchor = "nw",window = button1)
 button2_canvas = canvas1.create_window( 300, 400,anchor = "nw",window = button2)
-button2_canvas = canvas1.create_window( 390, 400,anchor = "nw",window = button3)
+button3_canvas = canvas1.create_window( 390, 400,anchor = "nw",window = button3)
   
 
 root.mainloop()
